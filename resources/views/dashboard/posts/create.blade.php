@@ -11,7 +11,7 @@
         <!-- Main content -->
         <section class="content">
             <div class="container-fluid">
-                <form action="{{ route('posts.store') }}" method="POST">
+                <form enctype="multipart/form-data" action="{{ route('posts.store') }}" method="POST">
                     @csrf
                     @foreach ($errors->all() as $error)
                         <div class="alert alert-danger col-6">{{ $error }}</div>
@@ -40,7 +40,11 @@
                         <input class="text-lg" id="is_active" name="is_active" type="checkbox" name="my-checkbox" data-bootstrap-switch
                             data-off-color="danger" data-on-color="success">
                     </div>
-                    {{-- <button type="submit" class="btn btn-light text-lg" name="save">Save</button> --}}
+                    <div class="col-6 text-lg mb-4">
+                        <label for="thumbnail">Thumbnail *</label>
+                        <input required id="thumbnail" name="thumbnail" class="form-control form-control-lg" type="file"
+                            placeholder="form-control-lg">
+                    </div>
                     <input type="submit" class="btn btn-light text-lg" name="Save" value="Save">
                 </form>
             </div>

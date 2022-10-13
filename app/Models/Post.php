@@ -80,11 +80,17 @@ class Post extends Model implements Viewable
 
     public function commentsCount()
     {
-        if (count($this->comments) > 1) {
-            return count($this->comments) . ' comments';
+        $count = $this->comments->count();
+
+       /*  $this->comments->map(function($comment) use($count) {
+                $count += $comment->replies->count();
+        }); */
+
+        if ($count > 1) {
+            return $count . ' comments';
         }
 
-        if (count($this->comments) < 1) {
+        if ($count < 1) {
             return 'No comments yet';
         }
 

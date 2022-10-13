@@ -19,7 +19,7 @@
                                 <li class="author">
                                     <a
                                         href="{{ route('post', ['category' => $post->category->name, 'post' => $post->slug]) }}">
-                                        <img src="{{ asset($post->thumbnail) }}" alt="">{{ $post->user->name }}
+                                        <img src="{{ asset($post->user->avatar) }}" alt="">{{ $post->user->name }}
                                     </a>
                                 </li>
                                 <li>
@@ -123,7 +123,7 @@
 
                         <ul class="comments-list">
                             <!-- Comments-list li end-->
-                                @livewire('comments',['comments' => $post->comments])
+                                @livewire('comments',['comments' => $post->comments,'post' =>$post])
                         </ul>
                         <!-- Comments-list ul end-->
 

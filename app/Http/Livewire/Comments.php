@@ -9,7 +9,7 @@ class Comments extends Component
 {
     protected $listeners = ['commentPosted'];
 
-    public $comments;
+    public $comments , $post;
 
     public function commentPosted(Comment $comment,Comment $replied_to = null) {
 

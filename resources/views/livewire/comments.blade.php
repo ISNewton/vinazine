@@ -1,5 +1,5 @@
 <div>
-    <h3 class="comments-counter">{{$comments->count() }} {{ $comments->count() != 1 ? 'Comments' : 'Comment' }}</h3>
+    <h3 class="comments-counter">{{$comments->count()}} {{ $comments->count() != 1 ? 'Comments' : 'Comment' }}</h3>
     @foreach ($comments as $comment)
     <li>
         <div class="comment">
@@ -36,9 +36,9 @@
                             <div class="meta-data">
                                 @if ($reply->user_id == auth()->id())
                                 <span class="float-right mx-3">
-                                <button wire:click="deleteComment({{$reply->id}})" class=" btn btn-danger" type="submit"
-                                    class="comment-reply"href="#">
-                                    <i class="fa fa-trash"></i></button>
+                                    <a wire:click="deleteComment({{$reply->id}})" class="text-light bg-danger p-2 " type="submit"
+                                        class="comment-reply" style="cursor: pointer">
+                                        <i class="fa fa-trash"></i></a>
                                 </span>
                             @endif
                              <span class="comment-author">{{$reply->user->name}}</span><span class="comment-date">{{$reply->created_at}}</span>

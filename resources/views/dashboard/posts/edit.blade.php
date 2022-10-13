@@ -11,7 +11,7 @@
         <!-- Main content -->
         <section class="content">
             <div class="container-fluid">
-                <form action="{{ route('posts.update', $post->slug) }}" method="POST">
+                <form enctype="multipart/form-data" action="{{ route('posts.update', $post->slug) }}" method="POST">
                     @csrf
                     @method('PUT')
                     @foreach ($errors->all() as $error)
@@ -41,6 +41,11 @@
                         <label for="is_active">Is Active</label>
                         <input id="is_active" name="is_active" {{ $post->is_active ? 'checked' : '' }} type="checkbox"
                             name="my-checkbox" data-bootstrap-switch data-off-color="danger" data-on-color="success">
+                    </div>
+                    <div class="col-6 text-lg mb-4">
+                        <label for="thumbnail">Thumbnail </label>
+                        <input id="thumbnail" name="thumbnail" class="form-control form-control-lg" type="file"
+                            placeholder="form-control-lg">
                     </div>
                     <button type="submit" class="btn btn-light text-lg">Save</button>
                 </form>

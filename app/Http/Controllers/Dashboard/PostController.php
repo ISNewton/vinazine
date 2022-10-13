@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 use App\Http\Requests\StorePostRequest;
 use App\Http\Requests\UpdatePostRequest;
+use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
@@ -60,6 +61,10 @@ class PostController extends Controller
 
         $data['user_id'] = Auth::id();
         $data['is_active']  = $request->is_active == 'on';
+
+        if($request->hasFile('thumbnail')) {
+            $data['thumbnail'] = Storage::disk('custome')->put('images/thumbnail',$request->thumbnail);
+        }
 
         Post::create($data);
 
@@ -115,6 +120,10 @@ class PostController extends Controller
         $this->authorize($post, 'update');
 
         $data = $request->validated();
+
+        if($request->hasFile('thumbnail')) {
+            $data['thumbnail'] = Storage::disk('custome')->put('images/thumbnail',$request->thumbnail);
+        }
 
         $data['is_active'] = $request->is_active == 'on';
 
